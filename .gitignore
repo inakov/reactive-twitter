@@ -1,5 +1,5 @@
 logs
-project/typesafe.properties
+project/project
 project/target
 target
 tmp
@@ -13,8 +13,3 @@ dist
 /.project
 /RUNNING_PID
 /.settings
-.target
-.cache
-bin
-.DS_Store
-activator-sbt-*-shim.sbt

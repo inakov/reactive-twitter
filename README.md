@@ -1,0 +1,1 @@
+Twitter clone for school project with scala, play framework and reactivemongo.
