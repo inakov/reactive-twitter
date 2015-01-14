@@ -1,6 +1,5 @@
 package models.daos
 
-import core.dao.DocumentDao
 import models.User
 import com.mohiva.play.silhouette.core.LoginInfo
 import reactivemongo.bson.BSONObjectID
@@ -9,7 +8,7 @@ import scala.concurrent.Future
 /**
  * Give access to the user object.
  */
-trait UserDAO extends DocumentDao[User] {
+trait UserDAO {
 
   /**
    * Finds a user by its login info.

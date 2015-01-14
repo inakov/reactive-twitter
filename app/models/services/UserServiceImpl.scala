@@ -2,6 +2,7 @@ package models.services
 
 import java.util.UUID
 import javax.inject.Inject
+import org.joda.time.DateTime
 import play.api.libs.concurrent.Execution.Implicits._
 import com.mohiva.play.silhouette.core.LoginInfo
 import com.mohiva.play.silhouette.core.services.AuthInfo
@@ -46,21 +47,21 @@ class UserServiceImpl @Inject() (userDAO: UserDAO) extends UserService {
     userDAO.find(profile.loginInfo).flatMap {
       case Some(user) => // Update user with profile
         userDAO.save(user.copy(
-          firstName = profile.firstName,
-          lastName = profile.lastName,
-          fullName = profile.fullName,
-          email = profile.email,
+          name = profile.fullName,
+          email = profile.email.getOrElse(""),
           avatarURL = profile.avatarURL
         ))
       case None => // Insert a new user
         userDAO.save(User(
           _id = Some(BSONObjectID.generate),
           loginInfo = profile.loginInfo,
-          firstName = profile.firstName,
-          lastName = profile.lastName,
-          fullName = profile.fullName,
-          email = profile.email,
-          avatarURL = profile.avatarURL
+          name = profile.fullName,
+          username = "",
+          email = profile.email.getOrElse(""),
+          avatarURL = profile.avatarURL,
+          created = DateTime.now,
+          following = None,
+          verified = None
         ))
     }
   }

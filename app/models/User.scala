@@ -2,17 +2,20 @@ package models
 
 import com.mohiva.play.silhouette.core.{LoginInfo, Identity}
 import core.models.IdentifiableModel
+import org.joda.time.DateTime
 import play.api.libs.json.Json
 import reactivemongo.bson.BSONObjectID
 
 case class User(
                  override  var _id: Option[BSONObjectID],
                  loginInfo: LoginInfo,
-                 firstName: Option[String],
-                 lastName: Option[String],
-                 fullName: Option[String],
-                 email: Option[String],
-                 avatarURL: Option[String]
+                 avatarURL: Option[String],
+                 name: Option[String],
+                 username: String,
+                 email: String,
+                 created: DateTime,
+                 following: Option[Set[BSONObjectID]],
+                 verified: Option[Boolean]
                  ) extends Identity with IdentifiableModel
 
 object User {
