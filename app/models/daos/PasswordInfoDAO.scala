@@ -48,6 +48,6 @@ class PasswordInfoDAO extends DelegableAuthInfoDAO[PasswordInfo] with DocumentDa
     }
   }
 
-  override val collectionName: String = "password"
+  override val collectionName: String = "passwords"
   override def ensureIndexes: Future[List[Boolean]] = Future.successful(Nil)
 }

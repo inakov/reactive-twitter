@@ -2,6 +2,7 @@ package controllers
 
 import java.util.UUID
 import javax.inject.Inject
+import org.joda.time.DateTime
 import reactivemongo.bson.BSONObjectID
 
 import scala.concurrent.Future
@@ -48,11 +49,13 @@ class SignUpController @Inject() (
         val user = User(
           _id = Some(BSONObjectID.generate),
           loginInfo = loginInfo,
-          firstName = Some(data.firstName),
-          lastName = Some(data.lastName),
-          fullName = Some(data.firstName + " " + data.lastName),
-          email = Some(data.email),
-          avatarURL = None
+          name = data.name,
+          username = data.username,
+          email = data.email,
+          avatarURL = None,
+          created = DateTime.now,
+          verified = None,
+          following = None
         )
         for {
           avatar <- avatarService.retrieveURL(data.email)

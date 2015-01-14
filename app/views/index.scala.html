@@ -13,16 +13,13 @@
         <div class="row data">
             <div class="col-md-12">
                 <div class="row">
-                    <p class="col-md-6"><strong>First name:</strong></p><p class="col-md-6">@user.firstName.getOrElse("None")</p>
+                    <p class="col-md-6"><strong>Username:</strong></p><p class="col-md-6">@user.username</p>
                 </div>
                 <div class="row">
-                    <p class="col-md-6"><strong>Last name:</strong></p><p class="col-md-6">@user.lastName.getOrElse("None")</p>
+                    <p class="col-md-6"><strong>Name:</strong></p><p class="col-md-6">@user.name.getOrElse("None")</p>
                 </div>
                 <div class="row">
-                    <p class="col-md-6"><strong>Full name:</strong></p><p class="col-md-6">@user.fullName.getOrElse("None")</p>
-                </div>
-                <div class="row">
-                    <p class="col-md-6"><strong>Email:</strong></p><p class="col-md-6">@user.email.getOrElse("None")</p>
+                    <p class="col-md-6"><strong>Email:</strong></p><p class="col-md-6">@user.email</p>
                 </div>
             </div>
         </div>

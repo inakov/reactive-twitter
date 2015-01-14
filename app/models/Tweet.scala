@@ -8,7 +8,7 @@ import reactivemongo.bson.BSONObjectID
  * Created by inakov on 14.01.15.
  */
 case class Tweet(
-                  override val _id: Option[BSONObjectID],
+                  override var _id: Option[BSONObjectID],
                   author: String,
                   authorId: BSONObjectID,
                   content: String,
