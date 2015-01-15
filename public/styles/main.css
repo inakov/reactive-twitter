@@ -24,3 +24,8 @@ fieldset {
 .user .data {
     margin-top: 10px;
 }
+
+.navigation-logo{
+    height: 60px;
+    margin-top: 3px;
+}
