@@ -13,6 +13,7 @@ case class Tweet(
                   authorId: BSONObjectID,
                   content: String,
                   location: Option[String],
+                  hashtags: Option[Set[String]],
                   created: DateTime
                   ) extends IdentifiableModel
 object Tweet{
