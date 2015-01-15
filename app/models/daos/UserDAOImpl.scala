@@ -52,4 +52,6 @@ class UserDAOImpl extends UserDAO with DocumentDao[User]{
 
   override val collectionName: String = "users"
   override def ensureIndexes: Future[List[Boolean]] = Future.successful(Nil)
+
+  override def findAll(): Future[List[User]] = find()
 }

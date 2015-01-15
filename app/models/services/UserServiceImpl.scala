@@ -65,4 +65,6 @@ class UserServiceImpl @Inject() (userDAO: UserDAO) extends UserService {
         ))
     }
   }
+
+  override def findAll(): Future[List[User]] = userDAO.findAll()
 }
