@@ -1,37 +1,66 @@
 @(signInForm: Form[com.mohiva.play.silhouette.core.providers.Credentials])(implicit env: com.mohiva.play.silhouette.core.Environment[User, _], request: RequestHeader)
 
-@import com.mohiva.play.silhouette.core.providers._
 @import bootstrap._
 
-@main("Silhouette - Sign In") {
-    @request.flash.get("error").map { msg =>
-        <div class="col-md-6 col-md-offset-3 alert alert-danger alert-error">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <strong>Error!</strong> @msg
-        </div>
-    }
-    <fieldset>
-        <legend class="col-md-6 col-md-offset-3">Sign in with your credentials</legend>
-        @helper.form(action = routes.CredentialsAuthController.authenticate()) {
-            @text(signInForm("identifier"), "Email")
-            @password(signInForm("password"), "Password")
-            <div class="form-group">
-                <div class="col-md-6 col-md-offset-3">
-                    <button id="submit" type="submit" value="submit" class="btn btn-primary btn-block">Submit</button>
-                </div>
-            </div>
-        }
-        @defining(env.providers.values.filter(_.isInstanceOf[SocialProvider[_]])) { providers =>
-            @if(!providers.isEmpty) {
-                <div class="social-providers col-md-6 col-md-offset-3">
-                    <p>Or use your existing account on one of the following services to sign in:</p>
-                    <div>
-                    @for(p <- providers) {
-                        <a href="@routes.SocialAuthController.authenticate(p.id)"><img src="@routes.Assets.at(s"images/providers/${p.id}.png")" style="width:60px;height:60px;"></a>
-                    }
-                    </div>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" sizes="57x57" href="@routes.Assets.at("images/favicons/apple-touch-icon-57x57.png")">
+        <link rel="apple-touch-icon" sizes="114x114" href="@routes.Assets.at("images/favicons/apple-touch-icon-114x114.png")">
+        <link rel="apple-touch-icon" sizes="72x72" href="@routes.Assets.at("images/favicons/apple-touch-icon-72x72.png")">
+        <link rel="apple-touch-icon" sizes="144x144" href="@routes.Assets.at("images/favicons/apple-touch-icon-144x144.png")">
+        <link rel="apple-touch-icon" sizes="60x60" href="@routes.Assets.at("images/favicons/apple-touch-icon-60x60.png")">
+        <link rel="apple-touch-icon" sizes="120x120" href="@routes.Assets.at("images/favicons/apple-touch-icon-120x120.png")">
+        <link rel="apple-touch-icon" sizes="76x76" href="@routes.Assets.at("images/favicons/apple-touch-icon-76x76.png")">
+        <link rel="apple-touch-icon" sizes="152x152" href="@routes.Assets.at("images/favicons/apple-touch-icon-152x152.png")">
+        <link rel="apple-touch-icon" sizes="180x180" href="@routes.Assets.at("images/favicons/apple-touch-icon-180x180.png")">
+        <link rel="icon" type="image/png" href="@routes.Assets.at("images/favicons/favicon-192x192.png")" sizes="192x192">
+        <link rel="icon" type="image/png" href="@routes.Assets.at("images/favicons/favicon-160x160.png")" sizes="160x160">
+        <link rel="icon" type="image/png" href="@routes.Assets.at("images/favicons/favicon-96x96.png")" sizes="96x96">
+        <link rel="icon" type="image/png" href="@routes.Assets.at("images/favicons/favicon-16x16.png")" sizes="16x16">
+        <link rel="icon" type="image/png" href="@routes.Assets.at("images/favicons/favicon-32x32.png")" sizes="32x32">
+
+        <title>Sign In</title>
+        <link rel="stylesheet" href="@routes.WebJarAssets.at(WebJarAssets.locate("bootswatch-readable","bootstrap.min.css"))">
+        <link rel="stylesheet" href="@routes.WebJarAssets.at(WebJarAssets.locate("bootswatch-readable","bootstrap-theme.min.css"))">
+        <link rel="stylesheet" href="@routes.Assets.at("styles/main.css")">
+            <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+            <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+            <![endif]-->
+    </head>
+    <body style="margin: 0px">
+        <main class="container">
+            <div>
+            @request.flash.get("error").map { msg =>
+                <div class="col-md-6 col-md-offset-3 alert alert-danger alert-error">
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    <strong>Error!</strong> @msg
                 </div>
             }
-        }
-    </fieldset>
-}
+            <fieldset style="margin: 0px">
+                <img class="signin-logo" src="@routes.Assets.at("images/reactivetwitter_text.png")" alt = "reactive-twitter" />
+                <legend class="col-md-6 col-md-offset-3">Sign in with your credentials</legend>
+                @helper.form(action = routes.CredentialsAuthController.authenticate()) {
+                    @text(signInForm("identifier"), "Email")
+                    @password(signInForm("password"), "Password")
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                            <button id="submit" type="submit" value="submit" class="btn btn-primary btn-block">Submit</button>
+                        </div>
+                    </div>
+                    <div class="sign-in-now col-md-6 col-md-offset-3">
+                        <p>Not a member? <a href="@routes.ApplicationController.signUp()">Sign up now</a></p>
+                    </div>
+                }
+            </fieldset>
+            </div>
+        </main>
+        <script type="text/javascript" src="@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))"></script>
+        <script type="text/javascript" src="@routes.WebJarAssets.at(WebJarAssets.locate("bootswatch-readable","bootstrap.min.js"))"></script>
+    </body>
+</html>
