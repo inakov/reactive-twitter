@@ -68,6 +68,41 @@
             </div>
         </main>
         <script type="text/javascript" src="@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))"></script>
+        <script>
+        $( document ).ready(function() {
+            $('button.followButton').live('click', function(e){
+            e.preventDefault();
+            $button = $(this);
+            if($button.hasClass('following')){
+
+            //$.ajax(); Do Unfollow
+
+            $button.removeClass('following');
+            $button.removeClass('unfollow');
+            $button.text('Follow');
+            } else {
+
+            // $.ajax(); Do Follow
+
+            $button.addClass('following');
+            $button.text('Following');
+            }
+            });
+
+            $('button.followButton').hover(function(){
+            $button = $(this);
+            if($button.hasClass('following')){
+            $button.addClass('unfollow');
+            $button.text('Unfollow');
+            }
+            }, function(){
+            if($button.hasClass('following')){
+            $button.removeClass('unfollow');
+            $button.text('Following');
+            }
+            });
+        });
+        </script>
         <script type="text/javascript" src="@routes.Assets.at("bootstrap/js/bootstrap.min.js")"></script>
     </body>
 </html>

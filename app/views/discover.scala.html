@@ -5,8 +5,15 @@
         <div class="list-group">
             @users.map{ user =>
                 <div class="list-group-item">
-                    <h4 class="list-group-item-heading">@user.username</h4>
-                    <p class="list-group-item-text">@user.name</p>
+                    <div class="account">
+                        <a class="list-group-item-heading" href="#">
+                        <img class="avatar-image-small" src="@user.avatarURL.getOrElse(routes.Assets.at("images/silhouette.png"))"/>
+                        <strong class="fullname">@user.name</strong><span class="username">@@@user.username</span></a>
+                        <p class="list-group-item-text bio">@user.biography</p>
+                        <div>
+                            <button class="btn followButton" rel="6">Follow</button>
+                        </div>
+                    </div>
                 </div>
             }
         </div>
