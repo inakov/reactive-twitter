@@ -6,13 +6,13 @@
             @users.map{ user =>
                 <div class="list-group-item">
                     <div class="account">
-                        <a class="list-group-item-heading" href="#">
+                        <div class="follow-bar">
+                            <button class="btn follow-button" rel="@user.identify">Follow</button>
+                        </div>
+                        <a class="list-group-item-heading account-group" href="#">
                         <img class="avatar-image-small" src="@user.avatarURL.getOrElse(routes.Assets.at("images/silhouette.png"))"/>
                         <strong class="fullname">@user.name</strong><span class="username">@@@user.username</span></a>
                         <p class="list-group-item-text bio">@user.biography</p>
-                        <div>
-                            <button class="btn followButton" rel="6">Follow</button>
-                        </div>
                     </div>
                 </div>
             }

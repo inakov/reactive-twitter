@@ -1,6 +1,7 @@
 package models.daos
 
 import core.dao.DocumentDao
+import core.exceptions.ServiceException
 import models.User
 import com.mohiva.play.silhouette.core.LoginInfo
 

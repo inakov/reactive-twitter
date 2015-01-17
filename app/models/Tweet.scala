@@ -10,7 +10,7 @@ import reactivemongo.bson.BSONObjectID
 case class Tweet(
                   override var _id: Option[BSONObjectID],
                   author: String,
-                  authorId: BSONObjectID,
+                  authorId: String,
                   content: String,
                   location: Option[String],
                   hashtags: Option[Set[String]],

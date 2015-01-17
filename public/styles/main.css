@@ -40,11 +40,53 @@ fieldset {
 
 .fullname{
     font-weight: bold;
+    font-size: 14px;
     color: #292f33;
+}
+
+.fullname:hover{
+    color: inherit;
 }
 
 .account{
     position: relative;
     min-height: 60px;
-    padding: 9px 12px;
+    padding: 0px 12px;
+}
+
+.account-group{
+    color: #8899a6;
+    text-decoration: none;
+}
+
+.account-group:hover{
+    text-decoration: none;
+}
+
+.username {
+    direction: ltr;
+    unicode-bidi: embed;
+}
+
+.username, .time{
+    font-size: 13px;
+    color: #8899a6;
+}
+
+.account .bio{
+    width: 336px;
+    word-wrap: break-word;
+}
+
+.follow-bar{
+    float: right;
+    display: block;
+}
+
+.follow-button{
+    width: 100px;
+}
+
+.tweet-button{
+    margin: 12px 6px;
 }

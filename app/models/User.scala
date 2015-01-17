@@ -15,7 +15,7 @@ case class User(
                  email: String,
                  created: DateTime,
                  biography: Option[String] = None,
-                 following: Option[Set[BSONObjectID]],
+                 following: Option[Set[String]],
                  verified: Option[Boolean]
                  ) extends Identity with IdentifiableModel
 

@@ -1,7 +1,9 @@
 package models.daos
 
+import core.exceptions.ServiceException
 import models.User
 import com.mohiva.play.silhouette.core.LoginInfo
+import play.api.libs.json.{Writes, JsObject}
 import reactivemongo.bson.BSONObjectID
 import scala.concurrent.Future
 
@@ -35,4 +37,7 @@ trait UserDAO {
   def save(user: User): Future[User]
 
   def findAll(): Future[List[User]]
+
+  def update(id: String, query: JsObject): Future[Either[ServiceException, JsObject]]
+  def pull[S](id: String, field: String, query: S)(implicit writer: Writes[S]): Future[Either[ServiceException, Boolean]]
 }

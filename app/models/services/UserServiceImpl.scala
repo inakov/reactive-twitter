@@ -7,6 +7,7 @@ import play.api.libs.concurrent.Execution.Implicits._
 import com.mohiva.play.silhouette.core.LoginInfo
 import com.mohiva.play.silhouette.core.services.AuthInfo
 import com.mohiva.play.silhouette.core.providers.CommonSocialProfile
+import play.api.libs.json.Json
 import reactivemongo.bson.BSONObjectID
 import scala.concurrent.Future
 import models.daos.UserDAO
@@ -67,4 +68,13 @@ class UserServiceImpl @Inject() (userDAO: UserDAO) extends UserService {
   }
 
   override def findAll(): Future[List[User]] = userDAO.findAll()
+
+  override def follow(followed: String, follower: String): Unit = {
+    val query = Json.obj("$addToSet" -> Json.obj("following" -> followed))
+    userDAO.update(follower, query)
+  }
+
+  override def unfollow(unfollowed: String, follower: String): Unit = {
+    userDAO.pull(follower, "following", unfollowed)
+  }
 }

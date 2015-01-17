@@ -51,7 +51,11 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         @user.map { u =>
-                            <li><a href="@routes.ApplicationController.index">@u.name</a></li>
+                            <li>
+                                <button type="button" class="btn btn-primary tweet-button" data-toggle="modal" data-target="#tweetModal">
+                                    Tweet
+                                </button>
+                            </li>
                             <li><a href="@routes.ApplicationController.signOut">Sign Out</a></li>
                         }.getOrElse {
                             <li><a href="@routes.ApplicationController.signIn">Sign In</a></li>
@@ -67,42 +71,25 @@
                 @content
             </div>
         </main>
+        <!-- Modal -->
+        <div class="modal fade" id="tweetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">What's happening?</h4>
+                    </div>
+                    <div class="modal-body">
+                    ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Tweet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script type="text/javascript" src="@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))"></script>
-        <script>
-        $( document ).ready(function() {
-            $('button.followButton').live('click', function(e){
-            e.preventDefault();
-            $button = $(this);
-            if($button.hasClass('following')){
-
-            //$.ajax(); Do Unfollow
-
-            $button.removeClass('following');
-            $button.removeClass('unfollow');
-            $button.text('Follow');
-            } else {
-
-            // $.ajax(); Do Follow
-
-            $button.addClass('following');
-            $button.text('Following');
-            }
-            });
-
-            $('button.followButton').hover(function(){
-            $button = $(this);
-            if($button.hasClass('following')){
-            $button.addClass('unfollow');
-            $button.text('Unfollow');
-            }
-            }, function(){
-            if($button.hasClass('following')){
-            $button.removeClass('unfollow');
-            $button.text('Following');
-            }
-            });
-        });
-        </script>
         <script type="text/javascript" src="@routes.Assets.at("bootstrap/js/bootstrap.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/reactive-twitter.js")"></script>
     </body>
 </html>
