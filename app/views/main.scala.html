@@ -79,12 +79,14 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">What's happening?</h4>
                     </div>
+                    <form id="tweetForm" action="@routes.TweetController.createTweet" method="POST">
                     <div class="modal-body">
-                    ...
+                        <textarea class="form-control" rows="3" id="tweet-content" maxlength="140"></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Tweet</button>
+                        <button type="submit" class="btn btn-primary">Tweet</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>

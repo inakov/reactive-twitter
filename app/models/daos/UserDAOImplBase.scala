@@ -1,6 +1,6 @@
 package models.daos
 
-import core.dao.DocumentDao
+import core.dao.BaseDocumentDao
 import core.exceptions.ServiceException
 import models.User
 import com.mohiva.play.silhouette.core.LoginInfo
@@ -13,7 +13,7 @@ import models.User._
 /**
  * Give access to the user object.
  */
-class UserDAOImpl extends UserDAO with DocumentDao[User]{
+class UserDAOImplBase extends UserDAO with BaseDocumentDao[User]{
 
   /**
    * Finds a user by its login info.

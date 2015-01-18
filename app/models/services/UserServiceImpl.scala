@@ -67,8 +67,6 @@ class UserServiceImpl @Inject() (userDAO: UserDAO) extends UserService {
     }
   }
 
-  override def findAll(): Future[List[User]] = userDAO.findAll()
-
   override def follow(followed: String, follower: String): Unit = {
     val query = Json.obj("$addToSet" -> Json.obj("following" -> followed))
     userDAO.update(follower, query)
@@ -76,5 +74,9 @@ class UserServiceImpl @Inject() (userDAO: UserDAO) extends UserService {
 
   override def unfollow(unfollowed: String, follower: String): Unit = {
     userDAO.pull(follower, "following", unfollowed)
+  }
+
+  override def discoverUser(userId: String): Future[List[User]] = {
+    userDAO.find(Json.obj("_id" -> Json.obj("$ne" -> userId)))
   }
 }

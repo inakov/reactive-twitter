@@ -17,7 +17,7 @@ class DiscoverController @Inject() (implicit val env: Environment[User, CachedCo
   extends Silhouette[User, CachedCookieAuthenticator] {
 
   def discover = SecuredAction.async{ implicit request =>{
-    userService.findAll().map(users => users.filter(_._id != request.identity._id)).map{
+    userService.discoverUser(request.identity.identify).map{
         users => Ok(views.html.discover(users, request.identity))
       }
     }

@@ -3,7 +3,7 @@ package models.daos
 import com.mohiva.play.silhouette.core.LoginInfo
 import com.mohiva.play.silhouette.core.providers.PasswordInfo
 import com.mohiva.play.silhouette.contrib.daos.DelegableAuthInfoDAO
-import core.dao.DocumentDao
+import core.dao.BaseDocumentDao
 import models.Password
 import play.api.libs.json.Json
 import reactivemongo.bson.BSONObjectID
@@ -13,7 +13,7 @@ import models.Password._
 /**
  * The DAO to store the password information.
  */
-class PasswordInfoDAO extends DelegableAuthInfoDAO[PasswordInfo] with DocumentDao[Password]{
+class PasswordInfoDAOBase extends DelegableAuthInfoDAO[PasswordInfo] with BaseDocumentDao[Password]{
 
   /**
    * Saves the password info.

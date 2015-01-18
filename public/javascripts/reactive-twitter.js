@@ -61,4 +61,22 @@ $( document ).ready(function() {
             $button.text('Following');
         }
     });
+
+
+
+    var tweetForm = $('#tweetForm');
+    tweetForm.submit(function (ev) {
+        var tweetContent = $('#tweet-content').val();
+        $.ajax({
+            type: tweetForm.attr('method'),
+            url: tweetForm.attr('action'),
+            data: JSON.stringify({ "content": tweetContent }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                console.log('Create tweet response: ' + data);
+            }
+        });
+        ev.preventDefault();
+    });
 });

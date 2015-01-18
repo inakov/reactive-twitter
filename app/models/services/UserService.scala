@@ -28,7 +28,7 @@ trait UserService extends IdentityService[User] {
    */
   def save[A <: AuthInfo](profile: CommonSocialProfile[A]): Future[User]
 
-  def findAll(): Future[List[User]]
+  def discoverUser(userId: String): Future[List[User]]
 
   def follow(followed: String, follower: String): Unit
   def unfollow(unfollowed: String, follower: String): Unit

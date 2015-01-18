@@ -18,6 +18,9 @@ GET         /discover                        @controllers.DiscoverController.dis
 POST        /follow                          @controllers.FollowController.follow
 POST        /unfollow                        @controllers.FollowController.unfollow
 
+#Tweet services
+POST        /tweet/create                    @controllers.TweetController.createTweet
+
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                    controllers.Assets.at(path="/public", file)
 GET         /webjars/*file                   controllers.WebJarAssets.at(file)
