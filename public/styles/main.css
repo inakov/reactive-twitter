@@ -188,11 +188,6 @@ fieldset {
     min-width: 100%;
     padding: 0;
     list-style: none;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-    -webkit-padding-start: 40px;
     line-height: 16px;
 }
 .profile-card .profile-card-content .profile-card-user-status .profile-card-user-status li{
@@ -214,7 +209,7 @@ fieldset {
 
 .profile-card-status-label{
     color: #8c9ca9;
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: .02em;
     text-transform: uppercase;
     transition: color .15s ease-in-out;
