@@ -41,8 +41,7 @@
                         <strong>Error!</strong> @msg
                     </div>
                 }
-                <fieldset style="margin: 0px">
-                    <img class="signin-logo" src="@routes.Assets.at("images/reactivetwitter_text.png")" alt = "reactive-twitter" />
+                <fieldset>
                     <legend class="col-md-6 col-md-offset-3">Sign up for a new account</legend>
                     @helper.form(action = routes.SignUpController.signUp()) {
                         @text(signInForm("email"), "Email")

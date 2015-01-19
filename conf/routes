@@ -10,6 +10,7 @@ GET         /signOut                         @controllers.ApplicationController.
 GET         /authenticate/:provider          @controllers.SocialAuthController.authenticate(provider)
 POST        /authenticate/credentials        @controllers.CredentialsAuthController.authenticate
 POST        /signUp                          @controllers.SignUpController.signUp
+GET         /authuser                        @controllers.ApplicationController.authUser
 
 # Discover
 GET         /discover                        @controllers.DiscoverController.discover
@@ -24,3 +25,6 @@ POST        /tweet/create                    @controllers.TweetController.create
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                    controllers.Assets.at(path="/public", file)
 GET         /webjars/*file                   controllers.WebJarAssets.at(file)
+
+# JavaScript routes object
+GET         /jsroutes.js                     @controllers.ApplicationController.jsRoutes()

@@ -1,6 +1,5 @@
 package models.services
 
-import java.util.UUID
 import javax.inject.Inject
 import org.joda.time.DateTime
 import play.api.libs.concurrent.Execution.Implicits._
@@ -12,6 +11,7 @@ import reactivemongo.bson.BSONObjectID
 import scala.concurrent.Future
 import models.daos.UserDAO
 import models.User
+import play.modules.reactivemongo.json.BSONFormats._
 
 /**
  * Handles actions to users.
@@ -77,6 +77,6 @@ class UserServiceImpl @Inject() (userDAO: UserDAO) extends UserService {
   }
 
   override def discoverUser(userId: String): Future[List[User]] = {
-    userDAO.find(Json.obj("_id" -> Json.obj("$ne" -> userId)))
+    userDAO.find(Json.obj("_id" -> Json.obj("$ne" -> BSONObjectID(userId))))
   }
 }
