@@ -7,7 +7,7 @@ define([], function() {
   /** Controls the index page */
   var HomeCtrl = function($scope, $rootScope, $location, helper) {
     console.log(helper.sayHi());
-    $rootScope.pageTitle = 'Welcome';
+    $rootScope.pageTitle = 'Newsfeed';
   };
   HomeCtrl.$inject = ['$scope', '$rootScope', '$location', 'helper'];
 
