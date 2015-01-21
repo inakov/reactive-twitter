@@ -235,3 +235,123 @@ fieldset {
     display: block;
 }
 
+.content-main{
+    float: left;
+    margin: 0 10px;
+    width: 590px;
+    border-radius: 6px;
+    display: block;
+}
+
+.tweets-container{
+    position: relative;
+    margin-left: 0;
+    list-style: none;
+    border-radius: 5px;
+}
+
+.tweets{
+    position: relative;
+    margin-left: 0;
+    list-style: none;
+}
+
+.tweets ol{
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.tweets ol li{
+    line-height: inherit;
+    background: #fff;
+    background-clip: padding-box;
+    display: list-item;
+}
+
+.tweet {
+    border-bottom: 1px solid #e1e8ed;
+    position: relative;
+    min-height: 80px;
+    padding: 9px 12px;
+    display: block;
+}
+
+.tweet-content{
+    margin-left: 58px;
+}
+.tweet-header .tweet-account-group{
+    color: #8899a6;
+    text-decoration: none;
+    background: transparent;
+}
+
+.tweet-account-avatar{
+    float: left;
+    margin-top: 3px;
+    margin-left: -58px;
+    width: 48px;
+    height: 48px;
+    border-radius: 5px;
+    border: 0;
+}
+
+.full-name{
+    font-weight: bold;
+    color: #292f33;
+}
+
+.username{
+    direction: ltr;
+    unicode-bidi: embed;
+}
+
+.tweet .username{
+    font-size: 13px;
+    color: #8899a6;
+}
+
+.tweet .full-name:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.tweet .time{
+    color: #8899a6;
+    font-size: 13px;
+}
+
+.tweet .time:before {
+    content: "\00b7";
+}
+
+.tweet .tweet-text{
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+}
+
+.tweet:hover{
+    background-color: #f5f8fa;
+}
+
+.tweets{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #e1e8ed;
+    background-color: #ffffff;
+}
+
+.footer-logo{
+    height: 30px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+
+
