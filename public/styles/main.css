@@ -2,6 +2,11 @@ body {
     padding-top: 50px;
     background-color: #f5f8fa;
 }
+
+.container {
+    width: 1220px;
+}
+
 h1 {
     text-align: center;
     font-size: 30px;
@@ -107,7 +112,6 @@ fieldset {
     height: 95px;
     border-radius: 4px 4px 0 0;
     background-position: 0 50%;
-    width: 100%;
     padding: 0 1px;
     margin-left: -1px;
     margin-top: -1px;
@@ -353,5 +357,207 @@ fieldset {
     display: block;
 }
 
+.container-right{
+    float: left;
+    width: 290px;
+    display: block;
+}
+
+.container-right .module{
+    display: block;
+    background-clip: padding-box;
+    border: 0;
+    border-radius: 6px;
+    line-height: 16px;
+    position: relative;
+    margin-bottom: 10px
+}
+
+.container-right .module .flex-module{
+    background-color: #fff;
+    border: 1px solid #e1e8ed;
+    padding: 15px;
+    line-height: 16px;
+    color: #292f33;
+    font-size: 14px;
+    border-radius: 6px;
+}
+
+.container-right .module .flex-module .header {
+    margin-bottom: 10px;
+}
+.container-right .module .flex-module .header h3{
+    font-size: 18px;
+    color: #66757f;
+    display: inline;
+    font-weight: 300;
+    line-height: 22px;
+    text-rendering: optimizeLegibility;
+}
+
+.container-right .module .flex-module .header small{
+    line-height: 1;
+    font-size: 12px;
+}
+
+.btn-link {
+    color: #3B94D9;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    border-radius: 0;
+    box-shadow: none;
+    text-transform: none;
+}
+
+small{
+    font-size: 12px;
+}
+
+.recommended-followers{
+    color: #8899a6;
+    font-size: 12px;
+    display: block;
+}
+
+.recommended-followers .account-summary{
+    position: relative;
+    display: block;
+    min-height: 60px;
+}
+
+.recommended-followers .account-summary .content{
+    min-height: 48px;
+    margin-left: 58px;
+    margin-right: 20px;
+    color: #8899a6;
+    font-size: 12px;
+}
+.recommended-followers .account-summary .content .account-group{
+    display: block;
+    line-height: 16px;
+    text-decoration: none;
+    cursor: auto;
+}
+
+.recommended-followers .account-summary .content .account-group img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 5px;
+    border: 0;
+    line-height: 16px;
+}
+
+.recommended-followers .account-summary .content .account-group .account-group-inner{
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #8899a6;
+    line-height: 16px;
+}
+
+.user-actions{
+    position: relative;
+    display: block;
+    color: #8899a6;
+    font-size: 12px;
+}
+
+.discover-navigation{
+    background-clip: padding-box;
+    border: 0;
+    border-radius: 6px;
+    line-height: 16px;
+    position: relative;
+    margin-bottom: 10px;
+    color: #292f33;
+    font-size: 14px;
+    display: block;
+}
+
+.discover-navigation ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    line-height: 16px;
+    color: #292f33;
+    font-size: 14px;
+    line-height: inherit;
+    background-clip: padding-box;
+    display: list-item;
+    border: 1px solid #e1e8ed;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+.discover-navigation li{
+    text-align: inherit;
+}
+
+.discover-navigation li:hover{
+    background-color: #f5f8fa;
+}
+
+.discover-navigation li a{
+    position: relative;
+    display: block;
+    padding: 8px 12px;
+    line-height: 16px;
+    color: #66757f;
+    border-bottom: 1px solid #e1e8ed;
+    border-top: 0;
+    text-decoration: none;
+
+}
+
+.discover-navigation li a:hover{
+    color: #3B94D9;
+}
+
+
+.discover-navigation .active{
+    font-weight: bold;
+}
+
+.active{
+    color: #292f33;
+    background-color: #fff;
+    text-decoration: none;
+}
+
+.discover-navigation ul:first-child li:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.discover-navigation li:first-child{
+    border-top: 1px solid #e1e8ed;
+}
+
+.discover-navigation ul:first-child li:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.discover-navigation li:first-child{
+    border-top: 1px solid #e1e8ed;
+}
+
+.discover-navigation li:last-child{
+    border-bottom: 0px;
+}
+
+.Icon{
+    float: right;
+    position: relative;
+    background: transparent;
+    display: inline-block;
+}
 
 
