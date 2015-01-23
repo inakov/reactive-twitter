@@ -1,6 +1,7 @@
 package models.services
 
 import javax.inject.Inject
+import models.dtos.UserSummary
 import org.joda.time.DateTime
 import play.api.libs.concurrent.Execution.Implicits._
 import com.mohiva.play.silhouette.core.LoginInfo
@@ -18,7 +19,7 @@ import play.modules.reactivemongo.json.BSONFormats._
  *
  * @param userDAO The user DAO implementation.
  */
-class UserServiceImpl @Inject() (userDAO: UserDAO) extends UserService {
+class UserServiceImpl @Inject() (userDAO: UserDAO, tweetService: TweetService) extends UserService {
 
   /**
    * Retrieves a user that matches the specified login info.
@@ -78,5 +79,21 @@ class UserServiceImpl @Inject() (userDAO: UserDAO) extends UserService {
 
   override def discoverUser(userId: String): Future[List[User]] = {
     userDAO.find(Json.obj("_id" -> Json.obj("$ne" -> BSONObjectID(userId))))
+  }
+
+  override def loadUserSummary(username: String): Future[UserSummary] = {
+    for {
+      user <- userDAO.findOne(Json.obj("username" -> username))
+      countTweets <- tweetService.countTweets(user.get.identify)
+      countFollowers <- userDAO.countFollowers(user.get.identify)
+    } yield UserSummary(user.get.identify,
+      user.get.username,
+      user.get.name,
+      user.get.avatarURL,
+      user.get.biography,
+      user.get.verified,
+      countTweets,
+      user.get.following.size,
+      countFollowers)
   }
 }

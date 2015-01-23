@@ -3,6 +3,7 @@ package models.services
 import models.User
 import com.mohiva.play.silhouette.core.services.{AuthInfo, IdentityService}
 import com.mohiva.play.silhouette.core.providers.CommonSocialProfile
+import models.dtos.UserSummary
 import scala.concurrent.Future
 
 /**
@@ -32,4 +33,6 @@ trait UserService extends IdentityService[User] {
 
   def follow(followed: String, follower: String): Unit
   def unfollow(unfollowed: String, follower: String): Unit
+
+  def loadUserSummary(username: String): Future[UserSummary]
 }

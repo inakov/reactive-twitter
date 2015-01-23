@@ -41,6 +41,9 @@ trait DocumentDao[M <: IdentifiableModel] {
   def remove(query: JsObject, firstMatchOnly: Boolean = false): Future[Either[ServiceException, Boolean]]
 
   def updated(data: JsObject): JsObject
+
+  def count(query: JsObject): Future[Int]
+
   def ensureIndex(
                    key: List[(String, IndexType)],
                    name: Option[String] = None,

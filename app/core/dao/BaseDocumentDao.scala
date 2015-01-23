@@ -2,6 +2,8 @@ package core.dao
 
 import core.models.IdentifiableModel
 import org.joda.time.DateTime
+import play.modules.reactivemongo.json.BSONFormats
+import reactivemongo.core.commands.Count
 import scala.concurrent.Future
 
 import play.api.Logger
@@ -106,6 +108,16 @@ trait BaseDocumentDao[M <: IdentifiableModel] extends BaseDao with DocumentDao[M
         error => data,
         success => success
       )
+  }
+
+  def count(query: JsObject): Future[Int] = {
+    val BSONQuery = BSONFormats.toBSON(query).get.asInstanceOf[BSONDocument]
+    collection.db.command(
+      Count(
+        collection.name,
+        Some(BSONQuery)
+      )
+    )
   }
 
   def ensureIndex(

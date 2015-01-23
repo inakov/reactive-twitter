@@ -1,9 +1,11 @@
 package models.daos
 
 import core.dao.BaseDocumentDao
+import core.db.DBQueryBuilder
 import core.exceptions.ServiceException
 import models.User
 import com.mohiva.play.silhouette.core.LoginInfo
+import reactivemongo.core.commands.{Match, Aggregate}
 
 import scala.concurrent.Future
 import play.api.libs.json.Json
@@ -55,4 +57,8 @@ class UserDAOImplBase extends UserDAO with BaseDocumentDao[User]{
   override def ensureIndexes: Future[List[Boolean]] = Future.successful(Nil)
 
   override def findAll(): Future[List[User]] = find()
+
+  override def countFollowers(userId: String): Future[Int] = {
+    count(DBQueryBuilder.in("following", userId))
+  }
 }

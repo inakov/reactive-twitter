@@ -14,13 +14,20 @@ GET         /authuser                        @controllers.ApplicationController.
 
 # Discover
 GET         /discover                        @controllers.DiscoverController.discover
+GET         /discover/tweets                 @controllers.DiscoverController.discoverTweets
+GET         /discover/users                  @controllers.DiscoverController.discoverUsers
 
 # Following service
 POST        /follow                          @controllers.FollowController.follow
 POST        /unfollow                        @controllers.FollowController.unfollow
 
+#User services
+GET         /users/:username                 @controllers.UserController.loadUserSummary(username)
+
 #Tweet services
-POST        /tweet/create                    @controllers.TweetController.createTweet
+POST        /tweets/create                   @controllers.TweetController.createTweet
+GET         /tweets/:username                @controllers.TweetController.loadUserTweets(username)
+GET         /tweets/newsfeed                 @controllers.TweetController.loadNewsfeed
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                    controllers.Assets.at(path="/public", file)

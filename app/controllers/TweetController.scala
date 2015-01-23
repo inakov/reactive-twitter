@@ -30,4 +30,15 @@ class TweetController @Inject() (implicit val env: Environment[User, CachedCooki
     }
   }
 
+  def loadUserTweets(username: String) = SecuredAction.async{
+    tweetService.tweets(username).map{ tweets =>
+      Ok(Json.toJson(tweets))
+    }
+  }
+
+  def loadNewsfeed = SecuredAction.async{ implicit request =>{
+      tweetService.tweetsForFollower(request.identity).map(tweets => Ok(Json.toJson(tweets)))
+    }
+  }
+
 }

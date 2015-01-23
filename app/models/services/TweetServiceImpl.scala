@@ -1,10 +1,12 @@
 package models.services
 
 import com.google.inject.Inject
+import core.db.DBQueryBuilder
 import models.{User, Tweet}
 import models.commands.CreateTweetCommand
 import models.daos.TweetDAO
 import org.joda.time.DateTime
+import play.api.libs.json.Json
 import reactivemongo.bson.BSONObjectID
 
 import scala.concurrent.Future
@@ -33,5 +35,21 @@ class TweetServiceImpl @Inject() (tweetDao: TweetDAO) extends TweetService{
   def createTweet(tweetCommand: CreateTweetCommand, user: User): Tweet = {
     Tweet(Some(BSONObjectID.generate), user.username, user.identify,
       tweetCommand.content, tweetCommand.location, extractHashtags(tweetCommand.content), DateTime.now)
+  }
+
+  override def countTweets(userId: String): Future[Int] = {
+    tweetDao.count(Json.obj("authorId" -> userId))
+  }
+
+  override def tweets(): Future[List[Tweet]] = {
+    tweetDao.find()
+  }
+
+  override def tweets(username: String): Future[List[Tweet]] = {
+    tweetDao.find(Json.obj("author" -> username))
+  }
+
+  override def tweetsForFollower(user: User): Future[List[Tweet]] = {
+    tweetDao.find(DBQueryBuilder.in("authorId", user.following))
   }
 }
