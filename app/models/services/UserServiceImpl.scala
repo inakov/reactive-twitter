@@ -62,7 +62,7 @@ class UserServiceImpl @Inject() (userDAO: UserDAO, tweetService: TweetService) e
           email = profile.email.getOrElse(""),
           avatarURL = profile.avatarURL,
           created = DateTime.now,
-          following = None,
+          following = Set(),
           verified = None
         ))
     }
@@ -89,7 +89,7 @@ class UserServiceImpl @Inject() (userDAO: UserDAO, tweetService: TweetService) e
     } yield UserSummary(user.get.identify,
       user.get.username,
       user.get.name,
-      user.get.avatarURL,
+      user.get.avatarURL.getOrElse("/assets/images/silhouette.png"),
       user.get.biography,
       user.get.verified,
       countTweets,

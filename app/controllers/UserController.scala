@@ -6,8 +6,7 @@ import com.mohiva.play.silhouette.contrib.services.CachedCookieAuthenticator
 import com.mohiva.play.silhouette.core.{Silhouette, Environment}
 import models.User
 import models.services.UserService
-import play.api.libs.json.Json
-import play.api.mvc.BodyParsers.parse
+import play.api.libs.json._
 import scala.concurrent.ExecutionContext.Implicits.global
 
 import scala.concurrent.Future

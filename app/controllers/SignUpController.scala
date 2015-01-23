@@ -55,7 +55,7 @@ class SignUpController @Inject() (
           avatarURL = None,
           created = DateTime.now,
           verified = None,
-          following = None
+          following = Set()
         )
         for {
           avatar <- avatarService.retrieveURL(data.email)

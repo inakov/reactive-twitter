@@ -2,31 +2,33 @@
     <div class="profile-card-background"></div>
     <div class="profile-card-content">
         <a class="profile-card-avatar-link">
-            <img class="profile-card-avatar-image" src="/assets/images/silhouette.png"/>
+            <img class="profile-card-avatar-image" src="{{userSummary.avatarURL}}"/>
         </a>
 
         <div class="profile-card-user-fields">
-            <div class="profile-card-name"><a href="#">ivan nakov</a></div>
-            <span class="profile-card-username"><a href="#">@<span class="profile-card-username-link">{{forUsername}}</span></a></span>
+            <div class="profile-card-name"><a href="#">{{userSummary.name}}</a></div>
+            <span class="profile-card-username">
+                <a href="#">@<span class="profile-card-username-link">{{userSummary.username}}</span></a>
+            </span>
         </div>
         <div class="profile-card-user-status">
             <ul class="profile-card-user-status">
                 <li>
                     <a class="profile-card-status-link" href="#">
                         <span class="profile-card-status-label">Tweets</span>
-                        <span class="profile-card-status-value">10</span>
+                        <span class="profile-card-status-value">{{userSummary.tweets}}</span>
                     </a>
                 </li>
                 <li>
                     <a class="profile-card-status-link" href="#">
                         <span class="profile-card-status-label">Following</span>
-                        <span class="profile-card-status-value">56</span>
+                        <span class="profile-card-status-value">{{userSummary.following}}</span>
                     </a>
                 </li>
                 <li>
                     <a class="profile-card-status-link" href="#">
                         <span class="profile-card-status-label">Followers</span>
-                        <span class="profile-card-status-value">178</span>
+                        <span class="profile-card-status-value">{{userSummary.followers}}</span>
                     </a>
                 </li>
             </ul>

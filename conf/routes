@@ -26,8 +26,8 @@ GET         /users/:username                 @controllers.UserController.loadUse
 
 #Tweet services
 POST        /tweets/create                   @controllers.TweetController.createTweet
-GET         /tweets/:username                @controllers.TweetController.loadUserTweets(username)
 GET         /tweets/newsfeed                 @controllers.TweetController.loadNewsfeed
+GET         /tweets/:username                @controllers.TweetController.loadUserTweets(username)
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                    controllers.Assets.at(path="/public", file)

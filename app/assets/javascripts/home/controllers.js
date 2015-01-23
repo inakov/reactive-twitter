@@ -5,11 +5,25 @@ define([], function() {
   'use strict';
 
   /** Controls the index page */
-  var HomeCtrl = function($scope, $rootScope, $location, helper) {
-    console.log(helper.sayHi());
+  var HomeCtrl = function($scope, $rootScope, $location, $http, userService) {
     $rootScope.pageTitle = 'Newsfeed';
+    $scope.$watch(function() {
+      var user = userService.getUser();
+      return user;
+    }, function(user) {
+      $scope.user = user;
+    }, true);
+
+    $http({
+      method: 'GET',
+      url: 'http://localhost:9000/tweets/newsfeed'
+    }).success(function(data) {
+      $scope.newsfeed = data;
+    }).error(function(data) {
+      console.error("Error on newfeed load: " + data);
+    });
   };
-  HomeCtrl.$inject = ['$scope', '$rootScope', '$location', 'helper'];
+  HomeCtrl.$inject = ['$scope', '$rootScope', '$location', '$http', 'userService'];
 
   /** Controls the header */
   var HeaderCtrl = function($scope, userService, helper, $location) {

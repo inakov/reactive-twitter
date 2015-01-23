@@ -560,4 +560,7 @@ small{
     display: inline-block;
 }
 
+.tweets-container h4{
+    text-align: center;
+}
 

@@ -50,6 +50,6 @@ class TweetServiceImpl @Inject() (tweetDao: TweetDAO) extends TweetService{
   }
 
   override def tweetsForFollower(user: User): Future[List[Tweet]] = {
-    tweetDao.find(DBQueryBuilder.in("authorId", user.following))
+    tweetDao.find(DBQueryBuilder.in("authorId", user.following.toSeq))
   }
 }

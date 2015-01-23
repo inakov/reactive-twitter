@@ -13,7 +13,20 @@ define(['angular'], function(angular) {
       scope: {
         forUsername: '@'
       },
-      templateUrl: "/assets/javascripts/common/directives/profile-card.html"
+      templateUrl: "/assets/javascripts/common/directives/profile-card.html",
+      controller: ['$scope', '$http', function($scope, $http) {
+        $scope.getUserSummary = function(username) {
+            $http({
+                method: 'GET',
+                url: "http://localhost:9000/users/" + username
+            }).success(function(data) {
+              $scope.userSummary = data;
+            });
+        }
+      }],
+      link: function(scope, iElement, iAttrs, ctrl) {
+        scope.getUserSummary(iAttrs.forUsername);
+      }
     };
   }]);
   return mod;

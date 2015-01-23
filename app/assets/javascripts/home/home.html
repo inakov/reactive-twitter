@@ -1,41 +1,25 @@
 <h1>What's new?</h1>
 <div class="container-left">
-    <div profile-card for-username="ivannakov"></div>
+    <div profile-card for-username="{{user.username}}"></div>
 </div>
 <div class="content-main col-md-6 col-md-offset-3">
     <div class="tweets-container">
-        <div class="tweets">
+        <h4 ng-show="newsfeed.length <= 0">There is no tweets available for you.</h4>
+        <div class="tweets" ng-show="newsfeed.length > 0">
             <ol>
-                <li>
+                <li ng-repeat='tweetModel in newsfeed'>
                     <div class="tweet">
                         <div class="tweet-content">
                             <div class="tweet-header">
                                 <a class="tweet-account-group">
                                     <img class="tweet-account-avatar" src="/assets/images/silhouette.png"/>
                                     <strong class="full-name">Ivan Nakov</strong>
-                                    <span class="username">@ivannakov</span>
+                                    <span class="username">@{{tweetModel.author}}</span>
                                 </a>
                                 <small class="time">
-                                    <span>45m</span>
+                                    <span>{{tweetModel.created | date:'medium'}}</span>
                                 </small>
-                                <p class="tweet-text">Popular on The Verge: Here's what to expect from the Windows 10 event today </p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="tweet">
-                        <div class="tweet-content">
-                            <div class="tweet-header">
-                                <a class="tweet-account-group">
-                                    <img class="tweet-account-avatar" src="/assets/images/silhouette.png"/>
-                                    <strong class="full-name">Ivan Nakov</strong>
-                                    <span class="username">@ivannakov</span>
-                                </a>
-                                <small class="time">
-                                    <span>45m</span>
-                                </small>
-                                <p class="tweet-text">FreedomPop Turns On Unlimited WiFi In The US For $5/Month</p>
+                                <p class="tweet-text">{{tweetModel.content}}</p>
                             </div>
                         </div>
                     </div>
