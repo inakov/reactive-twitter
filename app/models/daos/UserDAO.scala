@@ -41,4 +41,5 @@ trait UserDAO extends DocumentDao[User]{
 
   def countFollowers(userId: String): Future[Int]
 
+  def findUsersByIds(authorsIds: List[String]): Future[List[User]]
 }

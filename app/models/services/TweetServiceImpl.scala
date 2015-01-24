@@ -2,9 +2,10 @@ package models.services
 
 import com.google.inject.Inject
 import core.db.DBQueryBuilder
+import models.dtos.{Author, TweetDto}
 import models.{User, Tweet}
 import models.commands.CreateTweetCommand
-import models.daos.TweetDAO
+import models.daos.{UserDAO, TweetDAO}
 import org.joda.time.DateTime
 import play.api.libs.json.Json
 import reactivemongo.bson.BSONObjectID
@@ -14,7 +15,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 /**
  * Created by inakov on 18.01.15.
  */
-class TweetServiceImpl @Inject() (tweetDao: TweetDAO) extends TweetService{
+class TweetServiceImpl @Inject() (tweetDao: TweetDAO, userDao: UserDAO) extends TweetService{
 
   val hashtagsRegex = """(?<=^|(?<=[^a-zA-Z0-9-\.]))#([A-Za-z]+[A-Za-z0-9]+)""".r
 
@@ -41,15 +42,38 @@ class TweetServiceImpl @Inject() (tweetDao: TweetDAO) extends TweetService{
     tweetDao.count(Json.obj("authorId" -> userId))
   }
 
-  override def tweets(): Future[List[Tweet]] = {
-    tweetDao.find()
+  override def tweets(): Future[List[TweetDto]] = {
+    createTweetDtos(tweetDao.find())
   }
 
-  override def tweets(username: String): Future[List[Tweet]] = {
-    tweetDao.find(Json.obj("author" -> username))
+  override def tweets(authorId: String): Future[List[TweetDto]] = {
+    createTweetDtos(tweetDao.find(Json.obj("authorId" -> authorId)))
   }
 
-  override def tweetsForFollower(user: User): Future[List[Tweet]] = {
-    tweetDao.find(DBQueryBuilder.in("authorId", user.following.toSeq))
+  override def tweetsForFollower(user: User): Future[List[TweetDto]] = {
+    createTweetDtos(tweetDao.find(DBQueryBuilder.in("authorId", user.following.toSeq)))
+  }
+
+  private def createTweetDtos(tweets: Future[List[Tweet]]): Future[List[TweetDto]] = {
+    for{
+      tweetList <- tweets
+      users <- userDao.findUsersByIds(tweetList.map(_.authorId))
+    } yield {
+      tweetList.map{ tweet =>
+        val author = users.find(_.identify == tweet.authorId).map(author =>
+          Author(author.identify,
+            author.avatarURL.get,
+            author.name,
+            author.username,
+            author.verified.getOrElse(false)))
+        TweetDto(tweet.identify,
+          tweet.content,
+          tweet.location,
+          tweet.hashtags,
+          tweet.created,
+          author.get)
+      }
+    }
+
   }
 }

@@ -1,5 +1,6 @@
 package models.services
 
+import models.dtos.TweetDto
 import models.{User, Tweet}
 import models.commands.CreateTweetCommand
 
@@ -16,10 +17,10 @@ trait TweetService {
 
   def countTweets(userId: String) : Future[Int]
 
-  def tweets(): Future[List[Tweet]]
+  def tweets(): Future[List[TweetDto]]
 
-  def tweets(username: String): Future[List[Tweet]]
+  def tweets(username: String): Future[List[TweetDto]]
 
-  def tweetsForFollower(user: User): Future[List[Tweet]]
+  def tweetsForFollower(user: User): Future[List[TweetDto]]
 
 }

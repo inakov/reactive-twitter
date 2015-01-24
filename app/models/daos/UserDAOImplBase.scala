@@ -61,4 +61,8 @@ class UserDAOImplBase extends UserDAO with BaseDocumentDao[User]{
   override def countFollowers(userId: String): Future[Int] = {
     count(DBQueryBuilder.in("following", Seq(userId)))
   }
+
+  override def findUsersByIds(authorsIds: List[String]): Future[List[User]] = {
+    find(DBQueryBuilder.byIds(authorsIds))
+  }
 }
