@@ -283,8 +283,8 @@ fieldset {
     display: block;
 }
 
-.tweet-content{
-    margin-left: 58px;
+#tweet-content{
+    resize: none;
 }
 .tweet-header .tweet-account-group{
     color: #8899a6;

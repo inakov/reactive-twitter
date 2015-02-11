@@ -34,7 +34,7 @@ class TweetServiceImpl @Inject() (tweetDao: TweetDAO, userDao: UserDAO) extends 
   }
 
   def createTweet(tweetCommand: CreateTweetCommand, user: User): Tweet = {
-    Tweet(Some(BSONObjectID.generate), user.username, user.identify,
+    Tweet(Some(BSONObjectID.generate), user.identify,
       tweetCommand.content, tweetCommand.location, extractHashtags(tweetCommand.content), DateTime.now)
   }
 

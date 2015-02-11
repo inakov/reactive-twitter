@@ -11,7 +11,12 @@ define(['angular'], function(angular) {
         return {
             restrict: 'AE',
             scope: true,
-            templateUrl: "/assets/javascripts/common/directives/tweets/add-tweet.html"
+            templateUrl: "/assets/javascripts/common/directives/tweets/add-tweet.html",
+            controller: ['$scope', '$http', function($scope, $http) {
+                $scope.clearTweet= function(){
+                    $scope.tweet = null;
+                };
+            }]
         };
     }]);
     return mod;
