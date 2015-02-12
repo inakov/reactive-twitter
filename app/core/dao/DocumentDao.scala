@@ -5,6 +5,7 @@ import core.exceptions.ServiceException
 import core.models.IdentifiableModel
 import play.api.Logger
 import play.api.libs.json._
+import reactivemongo.api.QueryOpts
 import reactivemongo.api.indexes.{Index, IndexType}
 import reactivemongo.bson.{BSONDocument, BSONObjectID}
 
@@ -17,6 +18,8 @@ trait DocumentDao[M <: IdentifiableModel] {
   def insert(document: M)(implicit writer: Writes[M]): Future[Either[ServiceException, M]]
 
   def find(query: JsObject = Json.obj())(implicit reader: Reads[M]): Future[List[M]]
+
+  def findWithOptions(query: JsObject = Json.obj(), queryOpts: QueryOpts)(implicit reader: Reads[M]): Future[List[M]]
 
   def findById(id: String)(implicit reader: Reads[M]): Future[Option[M]]
 

@@ -15,6 +15,7 @@ GET         /authuser                        @controllers.ApplicationController.
 # Discover
 GET         /discover                        @controllers.DiscoverController.discover
 GET         /discover/tweets                 @controllers.DiscoverController.discoverTweets
+GET         /discover/users/three            @controllers.DiscoverController.discoverThreeUsers
 GET         /discover/users                  @controllers.DiscoverController.discoverUsers
 
 # Following service

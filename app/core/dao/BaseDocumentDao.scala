@@ -3,6 +3,7 @@ package core.dao
 import core.models.IdentifiableModel
 import org.joda.time.DateTime
 import play.modules.reactivemongo.json.BSONFormats
+import reactivemongo.api.QueryOpts
 import reactivemongo.core.commands.Count
 import scala.concurrent.Future
 
@@ -33,6 +34,11 @@ trait BaseDocumentDao[M <: IdentifiableModel] extends BaseDao with DocumentDao[M
   def find(query: JsObject = Json.obj())(implicit reader: Reads[M]): Future[List[M]] = {
     Logger.debug(s"Finding documents: [collection=$collectionName, query=$query]")
     collection.find(query).cursor[M].collect[List]()
+  }
+
+  def findWithOptions(query: JsObject = Json.obj(), queryOpts: QueryOpts)(implicit reader: Reads[M]): Future[List[M]] = {
+    Logger.debug(s"Finding documents: [collection=$collectionName, query=$query]")
+    collection.find(query).options(queryOpts).cursor[M].collect[List]()
   }
 
   def findById(id: String)(implicit reader: Reads[M]): Future[Option[M]] = findOne(DBQueryBuilder.id(id))

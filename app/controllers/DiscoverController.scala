@@ -47,4 +47,21 @@ class DiscoverController @Inject() (implicit val env: Environment[User, CachedCo
   }
   }
 
+  def discoverThreeUsers = SecuredAction.async{ implicit request =>{
+      userService.discoverThreeUser(request.identity.identify).map{ users =>
+        val currentUser = request.identity
+        val userSuggestions:List[UserSuggestion] = users.map{ suggestedUser =>
+          UserSuggestion(suggestedUser.identify,
+            suggestedUser.avatarURL,
+            suggestedUser.name,
+            suggestedUser.username,
+            suggestedUser.verified,
+            suggestedUser.biography,
+            currentUser.following.contains(suggestedUser.identify))
+        }
+        Ok(Json.toJson(userSuggestions))
+      }
+    }
+  }
+
 }

@@ -8,11 +8,14 @@ import com.mohiva.play.silhouette.core.LoginInfo
 import com.mohiva.play.silhouette.core.services.AuthInfo
 import com.mohiva.play.silhouette.core.providers.CommonSocialProfile
 import play.api.libs.json.Json
+import reactivemongo.api.QueryOpts
 import reactivemongo.bson.BSONObjectID
 import scala.concurrent.Future
 import models.daos.UserDAO
 import models.User
 import play.modules.reactivemongo.json.BSONFormats._
+
+import scala.util.Random
 
 /**
  * Handles actions to users.
@@ -95,5 +98,15 @@ class UserServiceImpl @Inject() (userDAO: UserDAO, tweetService: TweetService) e
       countTweets,
       user.get.following.size,
       countFollowers)
+  }
+
+  override def discoverThreeUser(userId: String): Future[List[User]] = {
+    val userCount = userDAO.count(Json.obj("_id" -> Json.obj("$ne" -> BSONObjectID(userId))))
+
+    userCount.flatMap{count => {
+      val skip = Random.nextInt(count)
+      userDAO.findWithOptions(Json.obj("_id" -> Json.obj("$ne" -> BSONObjectID(userId))), QueryOpts(skipN = skip, batchSizeN = 3))
+      }
+    }
   }
 }
