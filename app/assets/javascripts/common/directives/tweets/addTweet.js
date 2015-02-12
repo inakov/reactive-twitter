@@ -16,6 +16,19 @@ define(['angular'], function(angular) {
                 $scope.clearTweet= function(){
                     $scope.tweet = null;
                 };
+
+                $scope.createTweet= function(){
+                    console.log($scope.tweet);
+                    $http({
+                        method: 'POST',
+                        url: "http://localhost:9000/tweets/create",
+                        data: $scope.tweet
+                    }).success(function(data) {
+                        console.log("Tweet created!")
+                    });
+                    $scope.clearTweet();
+                    $('#tweetModal').modal('hide');
+                };
             }]
         };
     }]);

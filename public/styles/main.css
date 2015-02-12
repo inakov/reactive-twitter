@@ -295,7 +295,7 @@ fieldset {
 .tweet-account-avatar{
     float: left;
     margin-top: 3px;
-    margin-left: -58px;
+    margin-right: 10px;
     width: 48px;
     height: 48px;
     border-radius: 5px;
@@ -562,5 +562,9 @@ small{
 
 .tweets-container h4{
     text-align: center;
+}
+
+.tweet-location{
+    float: left;
 }
 
