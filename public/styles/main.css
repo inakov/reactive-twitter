@@ -90,6 +90,8 @@ fieldset {
 
 .follow-button{
     width: 100px;
+    height: 30px;
+    padding: 0;
 }
 
 .tweet-button{
