@@ -19,7 +19,7 @@ trait DocumentDao[M <: IdentifiableModel] {
 
   def find(query: JsObject = Json.obj())(implicit reader: Reads[M]): Future[List[M]]
 
-  def findWithOptions(query: JsObject = Json.obj(), queryOpts: QueryOpts)(implicit reader: Reads[M]): Future[List[M]]
+  def findWithOptions(query: JsObject = Json.obj(), skip: Int, limit: Int)(implicit reader: Reads[M]): Future[List[M]]
 
   def findById(id: String)(implicit reader: Reads[M]): Future[Option[M]]
 

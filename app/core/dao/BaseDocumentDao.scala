@@ -36,9 +36,9 @@ trait BaseDocumentDao[M <: IdentifiableModel] extends BaseDao with DocumentDao[M
     collection.find(query).cursor[M].collect[List]()
   }
 
-  def findWithOptions(query: JsObject = Json.obj(), queryOpts: QueryOpts)(implicit reader: Reads[M]): Future[List[M]] = {
+  def findWithOptions(query: JsObject = Json.obj(), skip: Int, limit: Int)(implicit reader: Reads[M]): Future[List[M]] = {
     Logger.debug(s"Finding documents: [collection=$collectionName, query=$query]")
-    collection.find(query).options(queryOpts).cursor[M].collect[List]()
+    collection.find(query).options(QueryOpts(skipN = skip)).cursor[M].collect[List](limit)
   }
 
   def findById(id: String)(implicit reader: Reads[M]): Future[Option[M]] = findOne(DBQueryBuilder.id(id))

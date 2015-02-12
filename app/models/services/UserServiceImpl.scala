@@ -104,8 +104,8 @@ class UserServiceImpl @Inject() (userDAO: UserDAO, tweetService: TweetService) e
     val userCount = userDAO.count(Json.obj("_id" -> Json.obj("$ne" -> BSONObjectID(userId))))
 
     userCount.flatMap{count => {
-      val skip = Random.nextInt(count)
-      userDAO.findWithOptions(Json.obj("_id" -> Json.obj("$ne" -> BSONObjectID(userId))), QueryOpts(skipN = skip, batchSizeN = 3))
+      val skip = Random.nextInt(count-3)
+      userDAO.findWithOptions(Json.obj("_id" -> Json.obj("$ne" -> BSONObjectID(userId))), skip, 3)
       }
     }
   }
