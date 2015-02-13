@@ -1,10 +1,12 @@
 package models.daos
 
+import com.google.inject.Inject
 import core.dao.BaseDocumentDao
 import core.db.DBQueryBuilder
 import core.exceptions.ServiceException
 import models.User
 import com.mohiva.play.silhouette.core.LoginInfo
+import reactivemongo.api.indexes.IndexType
 import reactivemongo.core.commands.{Match, Aggregate}
 
 import scala.concurrent.Future
@@ -16,6 +18,7 @@ import models.User._
  * Give access to the user object.
  */
 class UserDAOImplBase extends UserDAO with BaseDocumentDao[User]{
+
 
   /**
    * Finds a user by its login info.
@@ -54,7 +57,15 @@ class UserDAOImplBase extends UserDAO with BaseDocumentDao[User]{
   }
 
   override val collectionName: String = "users"
-  override def ensureIndexes: Future[List[Boolean]] = Future.successful(Nil)
+
+  override def ensureIndexes: Future[List[Boolean]] = {
+    for {
+      usernameIndex <- ensureIndex(List(("username", IndexType.Ascending)), unique = true)
+      emailIndex <- ensureIndex(List(("email", IndexType.Ascending)), unique = true)
+    } yield {
+      List(usernameIndex, emailIndex)
+    }
+  }
 
   override def findAll(): Future[List[User]] = find()
 
@@ -65,4 +76,5 @@ class UserDAOImplBase extends UserDAO with BaseDocumentDao[User]{
   override def findUsersByIds(authorsIds: List[String]): Future[List[User]] = {
     find(DBQueryBuilder.byIds(authorsIds))
   }
+
 }

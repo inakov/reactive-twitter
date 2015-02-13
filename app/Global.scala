@@ -1,8 +1,9 @@
 package app
 
+import models.daos.UserDAOImplBase
 import play.api.i18n.{Messages, Lang}
 import play.api.mvc.Results._
-import play.api.GlobalSettings
+import play.api.{Application, GlobalSettings}
 import play.api.mvc.{Result, RequestHeader}
 import com.mohiva.play.silhouette.core.{Logger, SecuredSettings}
 import utils.di.SilhouetteModule
@@ -54,5 +55,9 @@ object Global extends GlobalSettings with SecuredSettings with Logger {
    */
   override def onNotAuthorized(request: RequestHeader, lang: Lang): Option[Future[Result]] = {
     Some(Future.successful(Redirect(routes.ApplicationController.signIn).flashing("error" -> Messages("access.denied"))))
+  }
+
+  override def onStart(app: Application) {
+    injector.getInstance(classOf[UserDAOImplBase]).ensureIndexes
   }
 }
