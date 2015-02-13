@@ -33,7 +33,7 @@
                 <small class="time">
                   <span>{{tweetModel.created | date:'medium'}}</span>
                 </small>
-                <p class="tweet-text">{{tweetModel.content}}</p>
+                <p class="tweet-text" ng-bind-html='tweetModel.content | hashtags'></p>
               </div>
             </div>
           </div>
