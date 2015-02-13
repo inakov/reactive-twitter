@@ -39,34 +39,21 @@
             <div class="header">
                 <h3>Who to follow?</h3>
                 <small>· </small>
-                <button class="btn-link"><small>Refresh</small></button>
+                <button class="btn-link" ng-click=""><small>Refresh</small></button>
             </div>
             <div class="recommended-followers">
-                <div class="account-summary">
+                <div ng-repeat="suggestedUser in userSuggestions" class="account-summary">
                     <div class="content">
                         <a class="account-group">
                             <img src="/assets/images/silhouette.png"/>
                             <span class="account-group-inner">
-                                <b class="fullname">Ivan Nakov</b>
-                                <span class="username">@<span>inakov</span></span>
+                                <b class="fullname">{{suggestedUser.name}}</b>
+                                <span class="username">@<span>{{suggestedUser.username}}</span></span>
                             </span>
                         </a>
                         <div class="user-actions">
-                            <div follow-button user="test"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="account-summary">
-                    <div class="content">
-                        <a class="account-group">
-                            <img src="/assets/images/silhouette.png"/>
-                            <span class="account-group-inner">
-                                <b class="fullname">Ivan Nakov</b>
-                                <span class="username">@<span>inakov</span></span>
-                            </span>
-                        </a>
-                        <div class="user-actions">
-                            <div follow-button user="test" following="true"></div>
+                            <div ng-if="suggestedUser.following == false" follow-button user="{{suggestedUser.userId}}"></div>
+                            <div ng-if="suggestedUser.following" following="true" follow-button user="{{suggestedUser.userId}}"></div>
                         </div>
                     </div>
                 </div>

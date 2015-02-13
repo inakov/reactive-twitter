@@ -47,7 +47,7 @@ define(['angular'], function(angular) {
                     $http({
                         method: 'POST',
                         url: "http://localhost:9000/unfollow",
-                        data: { "follow": $scope.user}
+                        data: { "unfollow": $scope.user}
                     }).success(function(data) {
                         console.log("Unfollowed - user: " + $scope.user);
                     });

@@ -52,10 +52,11 @@ class SignUpController @Inject() (
           name = data.name,
           username = data.username,
           email = data.email,
-          avatarURL = None,
+          avatarURL = Some("/assets/images/silhouette.png"),
           created = DateTime.now,
           verified = None,
-          following = Set()
+          following = Set(),
+          biography = Some("I'm too lazy to update my biography ;)")
         )
         for {
           avatar <- avatarService.retrieveURL(data.email)

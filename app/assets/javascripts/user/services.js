@@ -46,6 +46,20 @@ define(['angular', 'common'], function (angular) {
         });
       },
       getUser: function () {
+          if (!user) {
+              $log.info('Restoring user from cookie...');
+              playRoutes.controllers.ApplicationController.authUser().get()
+                  .success(function (data) {
+                      $log.info('Welcome back, ' + data.name);
+                      user = data;
+                      console.log("User: " + JSON.stringify(user));
+                  })
+                  .error(function () {
+                      $log.info('Token no longer valid, please log in.');
+                      token = undefined;
+                      return $q.reject("Token invalid");
+                  });
+          }
         return user;
       }
     };

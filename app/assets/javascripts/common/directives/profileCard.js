@@ -14,11 +14,12 @@ define(['angular'], function(angular) {
         forUsername: '@'
       },
       templateUrl: "/assets/javascripts/common/directives/profile-card.html",
-      controller: ['$scope', '$http', function($scope, $http) {
+      controller: ['$scope', '$http', 'userService', function($scope, $http, userService) {
+        $scope.forUsername = userService.getUser().username;
         $scope.getUserSummary = function(username) {
             $http({
                 method: 'GET',
-                url: "http://localhost:9000/users/" + username
+                url: "http://localhost:9000/users/" + $scope.forUsername
             }).success(function(data) {
               $scope.userSummary = data;
             });

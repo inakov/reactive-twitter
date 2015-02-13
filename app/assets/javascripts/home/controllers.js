@@ -22,6 +22,19 @@ define([], function() {
     }).error(function(data) {
       console.error("Error on newfeed load: " + data);
     });
+
+    $scope.getUserSuggestions = function() {
+        $http({
+            method: 'GET',
+            url: 'http://localhost:9000/discover/users/three'
+        }).success(function (data) {
+            $scope.userSuggestions = data;
+        }).error(function (data) {
+            console.error("Error on newfeed load: " + data);
+        });
+    }
+      $scope.getUserSuggestions();
+
   };
   HomeCtrl.$inject = ['$scope', '$rootScope', '$location', '$http', 'userService'];
 
