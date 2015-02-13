@@ -31,7 +31,7 @@
                   <span class="username">@{{tweetModel.author.username}}</span>
                 </a>
                 <small class="time">
-                  <span>{{tweetModel.created | date:'medium'}}</span>
+                  <span>{{tweetModel.created | fromNow}}</span>
                 </small>
                 <p class="tweet-text" ng-bind-html='tweetModel.content | hashtags'></p>
               </div>

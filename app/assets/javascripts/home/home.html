@@ -17,7 +17,7 @@
                                     <span class="username">@{{tweetModel.author}}</span>
                                 </a>
                                 <small class="time">
-                                    <span>{{tweetModel.created | date:'medium'}}</span>
+                                    <span>{{tweetModel.created | fromNow}}</span>
                                 </small>
                                 <p class="tweet-text">{{tweetModel.content | hashtags}}</p>
                             </div>

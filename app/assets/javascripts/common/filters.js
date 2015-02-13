@@ -10,5 +10,12 @@ define(['angular'], function(angular) {
             return $sce.trustAsHtml(value.replace(/(#)(\S*)/g,'<a href="#/discover">$1$2</a>'));
         }
     }]);
+
+    mod.filter('fromNow', function(){
+        return function(dateString) {
+            return moment(dateString).fromNow()
+        }
+    });
+
   return mod;
 });
