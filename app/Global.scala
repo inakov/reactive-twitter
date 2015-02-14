@@ -1,6 +1,6 @@
 package app
 
-import models.daos.UserDAOImplBase
+import models.user.UserDAOImplBase
 import play.api.i18n.{Messages, Lang}
 import play.api.mvc.Results._
 import play.api.{Application, GlobalSettings}

@@ -5,23 +5,25 @@ define([], function() {
   'use strict';
 
   /** Controls the index page */
-  var HomeCtrl = function($scope, $rootScope, $location, $http, userService) {
-    $rootScope.pageTitle = 'Newsfeed';
-    $scope.$watch(function() {
-      var user = userService.getUser();
-      return user;
-    }, function(user) {
-      $scope.user = user;
-    }, true);
+  var HomeCtrl = function($scope, $rootScope, $location, $http, userService, $timeout) {
+      $rootScope.pageTitle = 'Newsfeed';
+      $scope.$watch(function () {
+          var user = userService.getUser();
+          return user;
+      }, function (user) {
+          $scope.user = user;
+      }, true);
 
-    $http({
-      method: 'GET',
-      url: 'http://localhost:9000/tweets/newsfeed'
-    }).success(function(data) {
-      $scope.newsfeed = data;
-    }).error(function(data) {
-      console.error("Error on newfeed load: " + data);
-    });
+      $scope.reloadNewsfeed = function () {
+          $http({
+              method: 'GET',
+              url: 'http://localhost:9000/tweets/newsfeed'
+          }).success(function (data) {
+              $scope.newsfeed = data;
+          }).error(function (data) {
+              console.error("Error on newfeed load: " + data);
+          });
+      }
 
     $scope.getUserSuggestions = function() {
         $http({
@@ -34,9 +36,18 @@ define([], function() {
         });
     }
       $scope.getUserSuggestions();
+      $scope.reloadNewsfeed()
+
+      var poll = function() {
+          $timeout(function() {
+              $scope.reloadNewsfeed()
+              poll();
+          }, 30000);
+      };
+      poll();
 
   };
-  HomeCtrl.$inject = ['$scope', '$rootScope', '$location', '$http', 'userService'];
+  HomeCtrl.$inject = ['$scope', '$rootScope', '$location', '$http', 'userService', '$timeout'];
 
   /** Controls the header */
   var HeaderCtrl = function($scope, userService, helper, $location) {

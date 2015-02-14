@@ -1,6 +1,8 @@
 package controllers
 
 import javax.inject.Inject
+import models.user.{UserService, User}
+
 import scala.concurrent.Future
 import play.api.mvc.Action
 import play.api.libs.concurrent.Execution.Implicits._
@@ -9,8 +11,6 @@ import com.mohiva.play.silhouette.core.providers._
 import com.mohiva.play.silhouette.core.services.AuthInfoService
 import com.mohiva.play.silhouette.core.exceptions.AuthenticationException
 import com.mohiva.play.silhouette.contrib.services.CachedCookieAuthenticator
-import models.services.UserService
-import models.User
 import forms.SignInForm
 
 /**

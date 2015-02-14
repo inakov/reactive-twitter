@@ -41,6 +41,8 @@ object DBQueryBuilder {
 
   def in[T](field: String, values: Seq[T])(implicit writer: Writes[T]) = Json.obj(field -> Json.obj("$in" -> values))
 
+  def all[T](field: String, values: Seq[T])(implicit writer: Writes[T]) = Json.obj(field -> Json.obj("$all" -> values))
+
   def query[T](query: T)(implicit writer: Writes[T]): JsObject = Json.obj("$query" -> query)
 
   def orderBy[T](query: T)(implicit writer: Writes[T]): JsObject = Json.obj("$orderby" -> query)

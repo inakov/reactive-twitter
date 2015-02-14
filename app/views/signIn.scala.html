@@ -1,5 +1,5 @@
-@(signInForm: Form[com.mohiva.play.silhouette.core.providers.Credentials])(implicit env: com.mohiva.play.silhouette.core.Environment[User, _], request: RequestHeader)
-
+@(signInForm: Form[com.mohiva.play.silhouette.core.providers.Credentials])(implicit env: com.mohiva.play.silhouette.core.Environment[models.user.User, _], request: RequestHeader)
+@import models.user.User
 @import bootstrap._
 
 <!DOCTYPE html>

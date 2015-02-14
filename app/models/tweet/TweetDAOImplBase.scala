@@ -1,7 +1,6 @@
-package models.daos
+package models.tweet
 
 import core.dao.BaseDocumentDao
-import models.Tweet
 
 import scala.concurrent.Future
 

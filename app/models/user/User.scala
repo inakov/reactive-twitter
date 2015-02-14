@@ -1,6 +1,6 @@
-package models
+package models.user
 
-import com.mohiva.play.silhouette.core.{LoginInfo, Identity}
+import com.mohiva.play.silhouette.core.{Identity, LoginInfo}
 import core.models.IdentifiableModel
 import org.joda.time.DateTime
 import play.api.libs.json.Json

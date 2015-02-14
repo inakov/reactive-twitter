@@ -1,8 +1,7 @@
-package models.services
+package models.tweet
 
-import models.dtos.TweetDto
-import models.{User, Tweet}
-import models.commands.CreateTweetCommand
+import models.tweet.{CreateTweetCommand, TweetDto}
+import models.user.User
 
 import scala.concurrent.Future
 
@@ -18,6 +17,8 @@ trait TweetService {
   def countTweets(userId: String) : Future[Int]
 
   def tweets(): Future[List[TweetDto]]
+
+  def tweetsWithHashtags(hashtags: Set[String]): Future[List[TweetDto]]
 
   def tweets(username: String): Future[List[TweetDto]]
 

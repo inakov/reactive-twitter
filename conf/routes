@@ -7,13 +7,12 @@ GET         /                                @controllers.ApplicationController.
 GET         /signIn                          @controllers.ApplicationController.signIn
 GET         /signUp                          @controllers.ApplicationController.signUp
 GET         /signOut                         @controllers.ApplicationController.signOut
-GET         /authenticate/:provider          @controllers.SocialAuthController.authenticate(provider)
 POST        /authenticate/credentials        @controllers.CredentialsAuthController.authenticate
 POST        /signUp                          @controllers.SignUpController.signUp
 GET         /authuser                        @controllers.ApplicationController.authUser
 
 # Discover
-GET         /discover                        @controllers.DiscoverController.discover
+GET         /discover/tweets/search          @controllers.DiscoverController.search(q: String)
 GET         /discover/tweets                 @controllers.DiscoverController.discoverTweets
 GET         /discover/users/three            @controllers.DiscoverController.discoverThreeUsers
 GET         /discover/users                  @controllers.DiscoverController.discoverUsers

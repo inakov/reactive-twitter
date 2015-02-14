@@ -2,6 +2,7 @@ package controllers
 
 import java.util.UUID
 import javax.inject.Inject
+import models.user.{UserService, User}
 import org.joda.time.DateTime
 import reactivemongo.bson.BSONObjectID
 
@@ -14,8 +15,6 @@ import com.mohiva.play.silhouette.core.utils.PasswordHasher
 import com.mohiva.play.silhouette.core.services.{AvatarService, AuthInfoService}
 import com.mohiva.play.silhouette.core.exceptions.AuthenticationException
 import com.mohiva.play.silhouette.contrib.services.CachedCookieAuthenticator
-import models.services.UserService
-import models.User
 import forms.SignUpForm
 
 /**

@@ -1,11 +1,9 @@
-package models.daos
+package models.user
 
-import core.dao.DocumentDao
-import core.exceptions.ServiceException
-import models.User
 import com.mohiva.play.silhouette.core.LoginInfo
-import play.api.libs.json.{Writes, JsObject}
+import core.dao.DocumentDao
 import reactivemongo.bson.BSONObjectID
+
 import scala.concurrent.Future
 
 /**

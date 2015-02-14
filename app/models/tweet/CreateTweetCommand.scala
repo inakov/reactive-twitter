@@ -1,8 +1,8 @@
-package models.commands
+package models.tweet
 
-import play.api.libs.json._
-import play.api.libs.json.Reads._
 import play.api.libs.functional.syntax._
+import play.api.libs.json.Reads._
+import play.api.libs.json._
 /**
  * Created by inakov on 17.01.15.
  */

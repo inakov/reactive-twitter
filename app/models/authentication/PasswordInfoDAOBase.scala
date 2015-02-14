@@ -1,14 +1,15 @@
-package models.daos
+package models.authentication
 
+import com.mohiva.play.silhouette.contrib.daos.DelegableAuthInfoDAO
 import com.mohiva.play.silhouette.core.LoginInfo
 import com.mohiva.play.silhouette.core.providers.PasswordInfo
-import com.mohiva.play.silhouette.contrib.daos.DelegableAuthInfoDAO
 import core.dao.BaseDocumentDao
-import models.Password
+import models.authentication.Password
+import Password._
 import play.api.libs.json.Json
 import reactivemongo.bson.BSONObjectID
+
 import scala.concurrent.Future
-import models.Password._
 
 /**
  * The DAO to store the password information.

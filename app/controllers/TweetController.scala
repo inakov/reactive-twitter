@@ -4,9 +4,8 @@ import javax.inject.Inject
 
 import com.mohiva.play.silhouette.contrib.services.CachedCookieAuthenticator
 import com.mohiva.play.silhouette.core.{Silhouette, Environment}
-import models.commands.{CreateTweetCommand}
-import models.{Tweet, User}
-import models.services.{TweetService}
+import models.tweet.{CreateTweetCommand, TweetService, Tweet}
+import models.user.User
 import play.api.libs.json.Json
 import scala.concurrent.ExecutionContext.Implicits.global
 

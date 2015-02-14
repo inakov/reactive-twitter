@@ -1,8 +1,8 @@
 package controllers
 
-import models.User
 import com.mohiva.play.silhouette.core.{LogoutEvent, Environment, Silhouette}
 import com.mohiva.play.silhouette.contrib.services.CachedCookieAuthenticator
+import models.user.User
 import scala.concurrent.Future
 import javax.inject.Inject
 import forms._

@@ -1,18 +1,14 @@
-package models.daos
+package models.user
 
-import com.google.inject.Inject
+import com.mohiva.play.silhouette.core.LoginInfo
 import core.dao.BaseDocumentDao
 import core.db.DBQueryBuilder
-import core.exceptions.ServiceException
-import models.User
-import com.mohiva.play.silhouette.core.LoginInfo
+import models.user.User._
+import play.api.libs.json.Json
 import reactivemongo.api.indexes.IndexType
-import reactivemongo.core.commands.{Match, Aggregate}
+import reactivemongo.bson.BSONObjectID
 
 import scala.concurrent.Future
-import play.api.libs.json.Json
-import reactivemongo.bson.BSONObjectID
-import models.User._
 
 /**
  * Give access to the user object.

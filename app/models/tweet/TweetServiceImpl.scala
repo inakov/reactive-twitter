@@ -1,17 +1,15 @@
-package models.services
+package models.tweet
 
 import com.google.inject.Inject
 import core.db.DBQueryBuilder
-import models.dtos.{Author, TweetDto}
-import models.{User, Tweet}
-import models.commands.CreateTweetCommand
-import models.daos.{UserDAO, TweetDAO}
+import models.tweet.{CreateTweetCommand, TweetDAO}
+import models.user.{User, UserDAO}
 import org.joda.time.DateTime
 import play.api.libs.json.Json
 import reactivemongo.bson.BSONObjectID
 
-import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 /**
  * Created by inakov on 18.01.15.
  */
@@ -46,12 +44,16 @@ class TweetServiceImpl @Inject() (tweetDao: TweetDAO, userDao: UserDAO) extends 
     createTweetDtos(tweetDao.find())
   }
 
+  override def tweetsWithHashtags(hashtags: Set[String]) = {
+    createTweetDtos(tweetDao.find(DBQueryBuilder.all("hashtags", hashtags.toSeq)))
+  }
+
   override def tweets(authorId: String): Future[List[TweetDto]] = {
     createTweetDtos(tweetDao.find(Json.obj("authorId" -> authorId)))
   }
 
   override def tweetsForFollower(user: User): Future[List[TweetDto]] = {
-    createTweetDtos(tweetDao.find(DBQueryBuilder.in("authorId", user.following.toSeq)))
+    createTweetDtos(tweetDao.findWithOptions(DBQueryBuilder.in("authorId", user.following.toSeq), 0, 50))
   }
 
   private def createTweetDtos(tweets: Future[List[Tweet]]): Future[List[TweetDto]] = {

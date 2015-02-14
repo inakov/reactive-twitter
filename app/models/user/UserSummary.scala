@@ -1,4 +1,5 @@
-package models.dtos
+package models.user
+
 import play.api.libs.json._
 
 /**

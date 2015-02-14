@@ -1,20 +1,19 @@
-package models.services
+package models.user
 
 import javax.inject.Inject
-import models.dtos.UserSummary
+
+import com.mohiva.play.silhouette.core.LoginInfo
+import com.mohiva.play.silhouette.core.providers.CommonSocialProfile
+import com.mohiva.play.silhouette.core.services.AuthInfo
+import models.tweet.TweetService
+import models.user.{UserDAO, UserSummary}
 import org.joda.time.DateTime
 import play.api.libs.concurrent.Execution.Implicits._
-import com.mohiva.play.silhouette.core.LoginInfo
-import com.mohiva.play.silhouette.core.services.AuthInfo
-import com.mohiva.play.silhouette.core.providers.CommonSocialProfile
 import play.api.libs.json.Json
-import reactivemongo.api.QueryOpts
-import reactivemongo.bson.BSONObjectID
-import scala.concurrent.Future
-import models.daos.UserDAO
-import models.User
 import play.modules.reactivemongo.json.BSONFormats._
+import reactivemongo.bson.BSONObjectID
 
+import scala.concurrent.Future
 import scala.util.Random
 
 /**

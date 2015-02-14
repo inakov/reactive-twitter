@@ -1,4 +1,4 @@
-package models
+package models.tweet
 
 import core.models.IdentifiableModel
 import org.joda.time.DateTime

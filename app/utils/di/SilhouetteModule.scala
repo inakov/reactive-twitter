@@ -1,5 +1,8 @@
 package utils.di
 
+import models.authentication.{PasswordInfoDAOBase, OAuth2InfoDAO, OAuth1InfoDAO}
+import models.tweet.{TweetDAOImplBase, TweetDAO, TweetServiceImpl, TweetService}
+import models.user._
 import play.api.Play
 import play.api.Play.current
 import com.google.inject.{ Provides, AbstractModule }
@@ -13,9 +16,6 @@ import com.mohiva.play.silhouette.core.providers.oauth1._
 import com.mohiva.play.silhouette.contrib.utils._
 import com.mohiva.play.silhouette.contrib.services._
 import com.mohiva.play.silhouette.contrib.daos.DelegableAuthInfoDAO
-import models.services.{TweetServiceImpl, TweetService, UserService, UserServiceImpl}
-import models.daos._
-import models.User
 
 /**
  * The Guice module which wires all Silhouette dependencies.

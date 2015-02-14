@@ -1,4 +1,4 @@
-package models.commands
+package models.follow
 
 import play.api.libs.json.Json
 

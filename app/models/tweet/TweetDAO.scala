@@ -1,7 +1,6 @@
-package models.daos
+package models.tweet
 
 import core.dao.DocumentDao
-import models.Tweet
 
 /**
  * Created by inakov on 14.01.15.

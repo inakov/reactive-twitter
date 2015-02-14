@@ -4,10 +4,8 @@ import javax.inject.Inject
 
 import com.mohiva.play.silhouette.contrib.services.CachedCookieAuthenticator
 import com.mohiva.play.silhouette.core.{Silhouette, Environment}
-import models.User
-import models.commands.{UnfollowCommand, FollowCommand}
-import models.dtos.FollowResponse
-import models.services.UserService
+import models.follow.{UnfollowCommand, FollowCommand, FollowResponse}
+import models.user.{UserService, User}
 import play.api.libs.json.Json
 
 import scala.concurrent.Future
